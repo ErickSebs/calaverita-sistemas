@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calaverita literaria del Departamento de TI - Día de Muertos 2026">
+    <title>Calaverita de Sistemas - Día de Muertos 2026</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --naranja-cempasuchil: #F5A623;
+            --naranja-oscuro: #D4841C;
+            --morado-profundo: #2D1B4E;
+            --morado-medio: #4A2C6E;
+            --morado-claro: #7B4FA2;
+            --rosa-mexicano: #E91E8C;
+            --turquesa: #00BFA5;
+            --rojo-muerte: #C0392B;
+            --hueso: #FFF8E7;
+            --dorado: #FFD700;
+            --negro-noche: #0D0815;
+        }
+
+        body {
+            background: var(--negro-noche);
+            color: var(--hueso);
+            font-family: 'Cormorant Garamond', serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ===== FONDO ANIMADO ===== */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(74, 44, 110, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(233, 30, 140, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(245, 166, 35, 0.2) 0%, transparent 50%),
+                var(--negro-noche);
+        }
+
+        /* ===== PAPEL PICADO ===== */
+        .papel-picado {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .papel-picado .banderita {
+            width: 60px;
+            height: 70px;
+            margin: 0 2px;
+            position: relative;
+            animation: sway 3s ease-in-out infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 75%, 80% 85%, 70% 75%, 60% 85%, 50% 75%, 40% 85%, 30% 75%, 20% 85%, 10% 75%, 0 85%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 10px;
+        }
+
+        .papel-picado .banderita img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+            transform: translateY(-5px);
+        }
+
+        @keyframes sway {
+
+            0%,
+            100% {
+                transform: rotate(-3deg);
+            }
+
+            50% {
+                transform: rotate(3deg);
+            }
+        }
+
+        .banderita:nth-child(even) {
+            animation-delay: -1.5s;
+        }
+
+        /* ===== VELAS ===== */
+        .velas-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 2;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            padding: 0 20px;
+            pointer-events: none;
+        }
+
+        .vela {
+            width: 12px;
+            height: 50px;
+            background: linear-gradient(to top, #FFF8DC, #F5DEB3);
+            border-radius: 3px 3px 0 0;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .vela::before {
+            content: '';
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 18px;
+            background: radial-gradient(ellipse, #FFD700, #FF8C00, transparent);
+            border-radius: 50% 50% 20% 20%;
+            animation: flicker 0.5s ease-in-out infinite alternate;
+        }
+
+        .vela::after {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, rgba(255, 165, 0, 0.4), transparent 70%);
+            border-radius: 50%;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% {
+                transform: translateX(-50%) scaleY(1) scaleX(1);
+                opacity: 1;
+            }
+
+            25% {
+                transform: translateX(-45%) scaleY(1.1) scaleX(0.9);
+            }
+
+            50% {
+                transform: translateX(-55%) scaleY(0.9) scaleX(1.1);
+            }
+
+            100% {
+                transform: translateX(-50%) scaleY(1.05) scaleX(0.95);
+                opacity: 0.85;
+            }
+        }
+
+        @keyframes glow {
+            from {
+                opacity: 0.5;
+                transform: translateX(-50%) scale(1);
+            }
+
+            to {
+                opacity: 0.9;
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
+
+        /* ===== FLORES CAYENDO (Cempasúchil) ===== */
+        .petal {
+            position: fixed;
+            z-index: 3;
+            pointer-events: none;
+            width: 14px;
+            height: 22px;
+            background: linear-gradient(135deg, #FF9800, #FFC107, #FF5722);
+            border-radius: 50% 0 50% 50%;
+            box-shadow: 0 0 8px rgba(255, 152, 0, 0.6);
+            opacity: 0;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                opacity: 0.9;
+                transform: translateX(0) rotate(0deg) scale(0.8);
+            }
+
+            25% {
+                transform: translateX(35px) rotate(90deg) scale(1);
+            }
+
+            50% {
+                transform: translateX(-25px) rotate(180deg) scale(1.1);
+            }
+
+            75% {
+                transform: translateX(30px) rotate(270deg) scale(0.95);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(-15px) rotate(360deg) translateY(105vh) scale(0.7);
+            }
+        }
+
+        /* ===== CONTENIDO PRINCIPAL ===== */
+        .main-content {
+            position: relative;
+            z-index: 5;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 20px 160px;
+        }
+
+        /* ===== TITULO ===== */
+        .title-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .title-skulls {
+            margin-bottom: 10px;
+            animation: pulse 2s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .title-skulls img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(245, 166, 35, 0.5));
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .main-title {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--naranja-cempasuchil), var(--dorado), var(--rosa-mexicano), var(--naranja-cempasuchil));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
+            text-shadow: none;
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .subtitle {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--morado-claro);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .divider {
+            width: 200px;
+            height: 3px;
+            margin: 25px auto;
+            background: linear-gradient(90deg, transparent, var(--naranja-cempasuchil), var(--rosa-mexicano), var(--naranja-cempasuchil), transparent);
+            border-radius: 2px;
+        }
+
+        /* ===== IMAGEN CATRINA ===== */
+        .catrina-section {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .catrina-frame {
+            display: inline-block;
+            position: relative;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--naranja-cempasuchil), var(--rosa-mexicano), var(--morado-claro), var(--turquesa));
+            background-size: 400% 400%;
+            animation: shimmer 6s ease-in-out infinite;
+            border-radius: 20px;
+            box-shadow:
+                0 0 30px rgba(245, 166, 35, 0.3),
+                0 0 60px rgba(233, 30, 140, 0.15),
+                inset 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .catrina-frame img {
+            display: block;
+            max-width: 380px;
+            width: 100%;
+            border-radius: 12px;
+            filter: saturate(1.1) contrast(1.05);
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+        .catrina-frame:hover img {
+            transform: scale(1.02);
+            filter: saturate(1.3) contrast(1.1);
+        }
+
+        .catrina-frame::before {
+            content: '🌺';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            font-size: 30px;
+            animation: spin 8s linear infinite;
+        }
+
+        .catrina-frame::after {
+            content: '🌺';
+            position: absolute;
+            bottom: -15px;
+            right: -15px;
+            font-size: 30px;
+            animation: spin 8s linear infinite reverse;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ===== POEMA ===== */
+        .poema-container {
+            background: linear-gradient(145deg, rgba(45, 27, 78, 0.7), rgba(13, 8, 21, 0.8));
+            border: 2px solid rgba(245, 166, 35, 0.3);
+            border-radius: 20px;
+            padding: 50px 40px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 215, 0, 0.1);
+        }
+
+        .poema-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, var(--naranja-cempasuchil), transparent, var(--rosa-mexicano), transparent, var(--morado-claro));
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .corner-ornament {
+            position: absolute;
+            opacity: 0.6;
+        }
+
+        .corner-ornament img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .corner-ornament.tl {
+            top: 15px;
+            left: 15px;
+        }
+
+        .corner-ornament.tr {
+            top: 15px;
+            right: 15px;
+            transform: scaleX(-1);
+        }
+
+        .corner-ornament.bl {
+            bottom: 15px;
+            left: 15px;
+            transform: scaleY(-1);
+        }
+
+        .corner-ornament.br {
+            bottom: 15px;
+            right: 15px;
+            transform: scale(-1);
+        }
+
+        .estrofa {
+            margin-bottom: 35px;
+            padding: 20px 25px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+        }
+
+        .estrofa.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .estrofa:last-child {
+            margin-bottom: 0;
+        }
+
+        .estrofa-icon {
+            display: block;
+            margin: 0 auto 10px;
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            opacity: 0.7;
+            filter: drop-shadow(0 0 4px rgba(245, 166, 35, 0.4));
+        }
+
+        .verso {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            line-height: 2;
+            color: var(--hueso);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .verso .dialogo {
+            color: var(--naranja-cempasuchil);
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        .verso .catrina-habla {
+            color: var(--rosa-mexicano);
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        .verso .enfasis {
+            color: var(--turquesa);
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px 30px;
+            background: linear-gradient(145deg, rgba(45, 27, 78, 0.6), rgba(13, 8, 21, 0.7));
+            border: 1px solid rgba(245, 166, 35, 0.2);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 300%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--naranja-cempasuchil), var(--dorado), var(--rosa-mexicano), transparent);
+            animation: scan 4s linear infinite;
+        }
+
+        @keyframes scan {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(33.33%);
+            }
+        }
+
+        .footer-skulls {
+            margin-bottom: 15px;
+            animation: pulse 2s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .footer-skulls img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(245, 166, 35, 0.4));
+        }
+
+        .footer-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--naranja-cempasuchil);
+            letter-spacing: 1px;
+        }
+
+        .footer-text strong {
+            color: var(--dorado);
+            font-weight: 600;
+        }
+
+        .footer-emoji {
+            font-size: 1.5rem;
+            display: inline-block;
+            animation: wink 3s ease-in-out infinite;
+        }
+
+        @keyframes wink {
+
+            0%,
+            90%,
+            100% {
+                transform: scale(1);
+            }
+
+            95% {
+                transform: scale(1.3) rotate(10deg);
+            }
+        }
+
+        .footer-year {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            color: var(--morado-claro);
+            margin-top: 15px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* ===== CALAVERAS FLOTANTES ===== */
+        .floating-skull {
+            position: fixed;
+            opacity: 0.08;
+            z-index: 1;
+            pointer-events: none;
+            animation: floatSkull 15s ease-in-out infinite;
+        }
+
+        .floating-skull img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        @keyframes floatSkull {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(-5deg);
+            }
+
+            75% {
+                transform: translateY(-40px) rotate(8deg);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .poema-container {
+                padding: 30px 20px;
+            }
+
+            .estrofa {
+                padding: 15px 15px 15px 20px;
+            }
+
+            .estrofa::before {
+                left: -22px;
+                font-size: 14px;
+            }
+
+            .papel-picado .banderita {
+                width: 40px;
+                height: 50px;
+            }
+
+            .catrina-frame img {
+                max-width: 280px;
+            }
+
+            .velas-container {
+                height: 80px;
+            }
+
+            .vela {
+                height: 35px;
+                width: 8px;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Fondo animado -->
+    <div class="bg-pattern"></div>
+
+    <!-- Papel Picado -->
+    <div class="papel-picado" id="papelPicado"></div>
+
+    <!-- Calaveras flotantes decorativas -->
+    <div class="floating-skull" style="top: 15%; left: 5%;"><img src="calavera 1.png" alt=""></div>
+    <div class="floating-skull" style="top: 40%; right: 8%; animation-delay: -3s;"><img src="calavera 1.png" alt="">
+    </div>
+    <div class="floating-skull" style="top: 65%; left: 10%; animation-delay: -7s;"><img src="calavera 1.png" alt="">
+    </div>
+    <div class="floating-skull" style="top: 25%; right: 15%; animation-delay: -11s;"><img src="calavera 1.png" alt="">
+    </div>
+    <div class="floating-skull" style="top: 80%; right: 5%; animation-delay: -5s;"><img src="calavera 1.png" alt="">
+    </div>
+
+    <!-- Contenido principal -->
+    <main class="main-content">
+
+        <!-- Título -->
+        <section class="title-section">
+            <div class="title-skulls">
+                <img src="calavera 1.png" alt="Calavera">
+                <img src="calavera 1.png" alt="Calavera">
+            </div>
+            <h1 class="main-title">Calaverita de Sistemas</h1>
+            <p class="subtitle">Día de Muertos 2026</p>
+            <div class="divider"></div>
+        </section>
+
+        <!-- Poema -->
+        <section class="poema-container">
+            <span class="corner-ornament tl"><img src="calavera 1.png" alt=""></span>
+            <span class="corner-ornament tr"><img src="calavera 1.png" alt=""></span>
+            <span class="corner-ornament bl"><img src="calavera 1.png" alt=""></span>
+            <span class="corner-ornament br"><img src="calavera 1.png" alt=""></span>
+
+            <div class="estrofa" data-delay="0">
+                <img class="estrofa-icon" src="calavera 1.png" alt="">
+                <p class="verso">La Catrina llegó al departamento</p>
+                <p class="verso">viendo un caos de gran magnitud:</p>
+                <p class="verso">medio mundo inventaba un cuento</p>
+                <p class="verso">para no hacer su <span class="enfasis">solicitud</span>.</p>
+            </div>
+
+            <div class="estrofa" data-delay="200">
+                <img class="estrofa-icon" src="calavera 1.png" alt="">
+                <p class="verso"><span class="dialogo">"¡Sistemas, no puedo iniciar la sesión!"</span></p>
+                <p class="verso"><span class="dialogo">"¡Sistemas, la impresora no quiere jalar!"</span></p>
+                <p class="verso">le lloraban a la Catrina</p>
+                <p class="verso">como si fuera cuestión de un mes.</p>
+            </div>
+
+            <div class="estrofa" data-delay="400">
+                <img class="estrofa-icon" src="calavera 1.png" alt="">
+                <p class="verso">El ingeniero, cruzado de brazos,</p>
+                <p class="verso">solo les daba una indicación:</p>
+                <p class="verso"><span class="catrina-habla">"No voy a mover ni mis pasos</span></p>
+                <p class="verso"><span class="catrina-habla">si no hay un ticket en la aplicación"</span>.</p>
+            </div>
+
+            <div class="estrofa" data-delay="600">
+                <img class="estrofa-icon" src="calavera 1.png" alt="">
+                <p class="verso"><span class="dialogo">"¡Es que no tengo tiempo!"</span>, decía el de Ventas,</p>
+                <p class="verso"><span class="dialogo">"¡A mí me urge!"</span>, gritaba el de Calidad.</p>
+                <p class="verso">Y la Muerte, sacando sus cuentas,</p>
+                <p class="verso">les puso un freno a tanta ansiedad.</p>
+            </div>
+
+            <div class="estrofa" data-delay="800">
+                <img class="estrofa-icon" src="calavera 1.png" alt="">
+                <p class="verso"><span class="catrina-habla">"Se me van al panteón derechito"</span>,</p>
+                <p class="verso">dijo la Flaca sin ver ningún lema,</p>
+                <p class="verso"><span class="catrina-habla">"¡allá los borramos por completo...</span></p>
+                <p class="verso"><span class="catrina-habla">por no abrir su <span class="enfasis">ticket de
+                            sistema</span>!"</span>.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-skulls">
+                <img src="calavera 1.png" alt="Calavera">
+                <img src="calavera 1.png" alt="Calavera">
+                <img src="calavera 1.png" alt="Calavera">
+            </div>
+            <p class="footer-text">
+                Atentamente: <strong>El departamento de TI</strong>.
+                ¡Abre tu ticket!
+            </p>
+            <p class="footer-year">Día de Muertos 2026</p>
+        </div>
+
+    </main>
+
+    <!-- Velas -->
+    <div class="velas-container" id="velasContainer"></div>
+
+    <script>
+        // ===== GENERAR PAPEL PICADO =====
+        (function () {
+            const container = document.getElementById('papelPicado');
+            const colors = [
+                '#F5A623', '#E91E8C', '#7B4FA2', '#00BFA5',
+                '#C0392B', '#FFD700', '#FF6B35', '#9B59B6'
+            ];
+            const count = Math.floor(window.innerWidth / 50);
+
+            for (let i = 0; i < count; i++) {
+                const b = document.createElement('div');
+                b.className = 'banderita';
+                b.style.backgroundColor = colors[i % colors.length];
+                b.style.animationDelay = (Math.random() * -3) + 's';
+                const img = document.createElement('img');
+                img.src = 'calaverita.png';
+                img.alt = '';
+                b.appendChild(img);
+                container.appendChild(b);
+            }
+        })();
+
+        // ===== GENERAR VELAS =====
+        (function () {
+            const container = document.getElementById('velasContainer');
+            const count = Math.floor(window.innerWidth / 120);
+
+            for (let i = 0; i < count; i++) {
+                const vela = document.createElement('div');
+                vela.className = 'vela';
+                vela.style.height = (35 + Math.random() * 30) + 'px';
+                vela.style.animationDelay = (Math.random() * -2) + 's';
+                container.appendChild(vela);
+            }
+        })();
+
+        // ===== PÉTALOS DE CEMPASÚCHIL CAYENDO (CSS Petals) =====
+        (function () {
+            const colors = [
+                'linear-gradient(135deg, #FFA000, #FFD54F)',
+                'linear-gradient(135deg, #FF6F00, #FFB300)',
+                'linear-gradient(135deg, #E65100, #FFA726)',
+                'linear-gradient(135deg, #FF8F00, #FFE082)',
+                'linear-gradient(135deg, #D84315, #FFB74D)'
+            ];
+
+            function createPetal(initialDelay = null) {
+                const p = document.createElement('div');
+                p.className = 'petal';
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.top = '-25px';
+
+                // Variación de tamaño y forma de pétalo
+                const size = 12 + Math.random() * 10;
+                p.style.width = (size * 0.75) + 'px';
+                p.style.height = (size * 1.3) + 'px';
+                p.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+                const duration = 5 + Math.random() * 6;
+                p.style.animationDuration = duration + 's';
+
+                // Si tiene delay negativo, ya aparece a mitad de su caída inmediatamente
+                if (initialDelay !== null) {
+                    p.style.animationDelay = initialDelay + 's';
+                    const remainingMs = Math.max(100, (duration + initialDelay) * 1000);
+                    document.body.appendChild(p);
+                    setTimeout(() => p.remove(), remainingMs);
+                } else {
+                    document.body.appendChild(p);
+                    setTimeout(() => p.remove(), duration * 1000);
+                }
+            }
+
+            // 1. Pre-poblar de inmediato toda la pantalla (pétalos ya en caída desde el segundo 0)
+            for (let i = 0; i < 40; i++) {
+                const randomProgress = -(Math.random() * 8); // delay negativo entre 0 y -8s
+                createPetal(randomProgress);
+            }
+
+            // 2. Flujo continuo de nuevos pétalos desde arriba
+            setInterval(() => createPetal(), 140);
+        })();
+
+        // ===== SCROLL REVEAL (Aparición progresiva al hacer scroll) =====
+        (function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -60px 0px'
+            });
+
+            document.querySelectorAll('.estrofa').forEach(el => observer.observe(el));
+        })();
+
+        // ===== EFECTO PARALLAX SUTIL EN CALAVERAS =====
+        (function () {
+            const skulls = document.querySelectorAll('.floating-skull');
+
+            window.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+                skulls.forEach((skull, i) => {
+                    const factor = (i + 1) * 0.5;
+                    skull.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+                });
+            });
+        })();
+    </script>
+
+    <!-- Audio local del usuario -->
+    <audio id="bgAudio" loop preload="auto" src="cancion.mp3">
+        <source src="cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // ===== AUDIO AUTOMÁTICO AL PRIMER TOQUE / CLIC EN EL SITIO (Ideal para QR / Móviles) =====
+        (function () {
+            const audio = document.getElementById('bgAudio');
+            if (!audio) return;
+
+            let started = false;
+
+            function startAudio() {
+                if (started) return;
+                audio.volume = 0.85;
+                audio.play().then(() => {
+                    started = true;
+                    cleanupListeners();
+                }).catch(() => {
+                    // Si el navegador requiere interacción táctil directa, se mantendrán los listeners
+                });
+            }
+
+            const touchEvents = ['touchstart', 'touchend', 'pointerdown', 'click', 'keydown'];
+
+            function onUserInteract() {
+                startAudio();
+            }
+
+            function cleanupListeners() {
+                touchEvents.forEach(ev => window.removeEventListener(ev, onUserInteract, { capture: true }));
+            }
+
+            // Registrar listeners para capturar el primer toque en celulares o clic en PC
+            touchEvents.forEach(ev => window.addEventListener(ev, onUserInteract, { capture: true, passive: true }));
+
+            // Intento de arranque automático directo (algunos navegadores móviles lo permiten si no hay restricciones)
+            startAudio();
+        })();
+    </script>
+</body>
+
+</html>
